@@ -21,6 +21,7 @@ function App() {
         <hr/>  
         <List />
       </section>  
+      <br></br>
     </>
   )
 }
