@@ -1,18 +1,21 @@
 import { } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ReactLogo from '../../assets/react.svg'
 import { Button } from '../Button'
 import cls from './Header.module.css'
 
 export const Header = () => 
 {
+	const navigate = useNavigate("/");
+
 	return (
 		<header className={cls.header} >
-			<p>
+			<p onClick={() => navigate}>
 				<img src={ReactLogo} alt="react logo" />
 				<span>React Card</span>
 			</p>
 			<div className={cls.headerButton}>
-				<Button isActiv={false}>Add</Button>
+				<Button onClick = { ()=> navigate("/addquestion")} >Add</Button>
 				<Button>Login</Button>
 			</div>
 		</header>
