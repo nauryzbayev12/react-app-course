@@ -1,5 +1,6 @@
 import { } from "react"
 import { Outlet } from 'react-router-dom'
+import { Header } from "../Header/Header"
 import cls from "./MainLayout.module.css"
 
 export const MainLayout = () => 
@@ -8,7 +9,7 @@ export const MainLayout = () =>
 
 	return(
 		<div className={cls.mainLayout}>
-			<header>header</header>
+			<Header/>
 			<div className={cls.mainWrapper} >
 				<main className={cls.main}>
 					<Outlet/>
