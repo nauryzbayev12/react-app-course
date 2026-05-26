@@ -1,16 +1,18 @@
 import { } from 'react'
+import ReactLogo from '../../assets/react.svg'
 import { Button } from '../Button'
+import cls from './Header.module.css'
 
 export const Header = () => 
 {
 	return (
-		<header>
+		<header className={cls.header} >
 			<p>
-				<img src="" alt="react logo" />
-				<span>Nauryz React Application</span>
+				<img src={ReactLogo} alt="react logo" />
+				<span>React Card</span>
 			</p>
-			<div>
-				<Button>Add</Button>
+			<div className={cls.headerButton}>
+				<Button isActiv={false}>Add</Button>
 				<Button>Login</Button>
 			</div>
 		</header>
