@@ -11,6 +11,9 @@ export const HomePage = () =>
 
   const [getQuestions, isLoading, error] = useFetch( async (url) => {
      const responce = await fetch(`${API_URL}/${url}`);
+     if (!responce.ok) {
+       throw new Error(`Ошибка: ${responce.status}`);
+     }
      const questions = await  responce.json();
      setQuestions(questions);
      return questions;
@@ -32,7 +35,7 @@ export const HomePage = () =>
 		<>
       <input type="text" value={searchValue} onChange={searchValueHandler}/>
       {isLoading && <Loader/> }
-      {error !== null && <p>{error}</p>}
+      {error && <p>{error}</p>}
 			<QuestionCardList cards = {questions} />
 		</>
 	);
