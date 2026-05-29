@@ -18,7 +18,7 @@ export const TestPage = () => (
 		<section className={cls.section}>
 			<h2 className={cls.sectionTitle}>flex-direction</h2>
 			<p className={cls.hint}>Определяет направление главной оси (куда выстраиваются элементы)</p>
-
+	
 			<FlexExample title="row — в ряд слева направо (по умолчанию)" containerClass={cls.row}>
 				<Box label="1" /><Box label="2" /><Box label="3" />
 			</FlexExample>

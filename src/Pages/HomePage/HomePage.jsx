@@ -25,7 +25,7 @@ export const HomePage = () =>
 
   },[])
 
-  const searchValueHandler = (e) => 
+  const onSearchChangeHandler = (e) => 
   {
     console.log(e.target.value);
     setSearchValue(e.target.value );
@@ -33,7 +33,7 @@ export const HomePage = () =>
 
 	return(
 		<>
-      <input type="text" value={searchValue} onChange={searchValueHandler}/>
+      <input type="text" value={searchValue} onChange={onSearchChangeHandler}/>
       {isLoading && <Loader/> }
       {error && <p>{error}</p>}
 			<QuestionCardList cards = {questions} />
