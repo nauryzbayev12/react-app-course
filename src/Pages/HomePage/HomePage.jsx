@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Button } from '../../components/Button/Button'
 import { Loader } from '../../components/Loader'
 import { QuestionCardList } from '../../components/QuestionCardList'
 import { SearchInput } from '../../components/SearchInput'
@@ -16,6 +17,11 @@ export const HomePage = () =>
   const[searchValue, setSearchValue] = useState("");
   const[questions, setQuestions] = useState({});
 
+  const getActivePageNumber = () => 
+    {
+      return  questions.next === null ? questions.last : questions.next - 1;
+    };
+
   const [getQuestions, isLoading, error] = useFetch( async (url) => {
      const responce = await fetch(`${API_URL}/${url}`);
      if (!responce.ok) {
@@ -26,19 +32,29 @@ export const HomePage = () =>
      return questions;
   });
 
-const cards = useMemo(() => {
-  if (questions?.data) {
-    if (searchValue.trim()) {
-      return questions.data.filter(d =>
-        d.questions.toLowerCase().includes(searchValue.trim().toLowerCase())
-      );
+  const cards = useMemo(() => {
+    if (questions?.data) {
+      if (searchValue.trim()) {
+        return questions.data.filter(d =>
+          d.questions.toLowerCase().includes(searchValue.trim().toLowerCase())
+        );
+      }
+
+      return questions.data;
     }
 
-    return questions.data;
-  }
+    return [];
+  }, [questions, searchValue]);
 
-  return [];
-}, [questions, searchValue]);
+  const pagination = useMemo(()=>
+  {
+    const totalCardsCount = questions?.pages || 0;
+
+    return Array(totalCardsCount)
+    .fill(0)
+    .map((_,i) => i + 1 )
+  },[questions]);
+
 
   useEffect(() => 
   {
@@ -56,6 +72,14 @@ const cards = useMemo(() => {
     setSearchParams(`?_page=1&_per_page=${DEFAULT_PER_PAGE}${e.target.value}`);
   }
 
+  const paginationHandler = (e) =>{
+    if (e.target.tagName === "BUTTON")
+    {
+    setSearchParams(`?_page=${e.target.textContent}&_per_page=${DEFAULT_PER_PAGE}${sortSelectValue}`);
+      
+    }
+  }
+
 	return(
 		<>
       <div className={cls.controlsContainer}>
@@ -71,8 +95,17 @@ const cards = useMemo(() => {
       </div>
       {isLoading && <Loader/> }
       {error && <p>{error}</p>}
-      {cards.length === 0 && <p className={cls.noCardsInfo}>No cards ...</p> }
 			<QuestionCardList cards = {cards} />
+
+      {cards.length === 0 ? <p className={cls.noCardsInfo}>No cards ...</p> : 
+      <div className={cls.paginationContainer}>
+        {
+        pagination.map((value) =>
+        {
+          return <Button key={value} isActiv={value === getActivePageNumber()} onClick = {paginationHandler} >{value} </Button>
+        })
+      }
+      </div>}
 		</>
 	);
 
