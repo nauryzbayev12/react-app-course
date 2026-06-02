@@ -38,7 +38,7 @@ export const HomePage = () =>
     if (questions?.data) {
       if (searchValue.trim()) {
         return questions.data.filter(d =>
-          d.questions.toLowerCase().includes(searchValue.trim().toLowerCase())
+          d.question.toLowerCase().includes(searchValue.trim().toLowerCase())
         );
       }
 
