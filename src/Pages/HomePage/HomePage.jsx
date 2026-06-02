@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '../../components/Button/Button'
 import { Loader } from '../../components/Loader'
 import { QuestionCardList } from '../../components/QuestionCardList'
@@ -17,10 +17,12 @@ export const HomePage = () =>
   const[searchValue, setSearchValue] = useState("");
   const[questions, setQuestions] = useState({});
 
+  const conrolsContainerRef = useRef();
+
   const getActivePageNumber = () => 
-    {
-      return  questions.next === null ? questions.last : questions.next - 1;
-    };
+  {
+    return  questions.next === null ? questions.last : questions.next - 1;
+  };
 
   const [getQuestions, isLoading, error] = useFetch( async (url) => {
      const responce = await fetch(`${API_URL}/${url}`);
@@ -75,14 +77,14 @@ export const HomePage = () =>
   const paginationHandler = (e) =>{
     if (e.target.tagName === "BUTTON")
     {
-    setSearchParams(`?_page=${e.target.textContent}&_per_page=${DEFAULT_PER_PAGE}${sortSelectValue}`);
-      
+  setSearchParams(`?_page=${e.target.textContent}&_per_page=${DEFAULT_PER_PAGE}${sortSelectValue}`);
+  conrolsContainerRef.current.scrollIntoView({behavior: "smooth"})
     }
   }
 
 	return(
 		<>
-      <div className={cls.controlsContainer}>
+      <div className={cls.controlsContainer} ref={conrolsContainerRef}>
       <SearchInput value={searchValue} onChange={onSearchChangeHandler} />
         <select value={sortSelectValue} onChange={onSelectValueChanged} className={cls.select}> 
           <option value="">sort by</option>
