@@ -1,0 +1,86 @@
+.container{
+	width: 100%;
+	max-width: 600px;
+	height: max-content;
+	margin: 50px auto;
+	padding: 15px;
+	background-color: var(--card-bg-color);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 25px;
+	button {
+		width: 100%;
+	}
+}
+
+.cardLabeles{
+	width: 100%;
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap-reverse;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.cardTitle{
+	font-size: 24px;
+	line-height: 28px;
+}
+
+.editDate
+{
+	margin-left: auto;
+	font-size: 12px;
+	font-style: italic;
+}
+
+.cardAnswers
+{
+	margin-top: auto;
+	opacity: .65;
+}
+
+.cardAnswer{
+	font-size: 14px;
+	font-style: italic;
+	text-align: justify;
+}
+
+
+.cardDescriptions
+{
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.cardLinks 
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 5px;
+	li {
+		margin-left: 15px;
+	}
+}
+
+.cardCheckBox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	span {
+		font-size: 14ox;
+		padding-bottom: 2px;
+	}
+}
+
+.checkbox{
+	width: 18px;
+	height: 18px;
+	accent-color: #16C47f;
+}
