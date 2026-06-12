@@ -9,3 +9,13 @@ export const Loader = () =>
 		</div>
 	);
 };
+
+export const SmallLoader = () => 
+{
+	return 
+	(
+		<div className = {cls.backdrop}>
+			<span className={cls.smallLoader}></span>
+		</div>
+	);
+};

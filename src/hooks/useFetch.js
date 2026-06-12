@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { delayFn } from '../helper/delayFn'
 
 export const useFetch = (callback) => 
@@ -20,6 +21,7 @@ export const useFetch = (callback) =>
 		catch(error)
 		{
 			setError(error.message);
+			toast.error(error.message)
 		}
 		finally
 		{

@@ -2,7 +2,7 @@ import { useEffect, useId, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Badge } from '../../components/Badge/Badge'
 import { Button } from '../../components/Button/Button'
-import { Loader } from '../../components/Loader'
+import { Loader, SmallLoader } from '../../components/Loader'
 import { API_URL } from '../../constants'
 import { useFetch } from '../../hooks/useFetch'
 import cls from './QuestionPage.module.css'
@@ -114,6 +114,7 @@ export const QuestionPage = () =>
 					checked ={isChecked}
 					onChange={onCheckboxChangedHandler} disabled = {isCardUpdating}/>
 				<span>mark questuions as completed</span>
+				{isCardUpdating && <SmallLoader />}
 			</label>
 			<Button onClick = { () => navigate(`/editquestion/${card.id}`)} isDisabled = {isCardUpdating}> Edit Question </Button>
 			<Button onClick = { () => navigate("/")} isDisabled = {isCardUpdating}> Back </Button>
