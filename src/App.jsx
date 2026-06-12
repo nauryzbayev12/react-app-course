@@ -13,7 +13,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='/forbiden' element={<div>forbiden !!!</div>}/>
-        <Route path='/addquestion' element={<div>add question</div>}/>
+        <Route path='/addquestion' element={<div>afdsfdsafsad</div>}/>
         <Route path='/question/:id' element={<QuestionPage/>} />
         <Route path='/testpage' element={<TestPage/>} />
         <Route path='*' element={<NotFoundPage />} />
