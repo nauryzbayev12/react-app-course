@@ -1,4 +1,5 @@
 import { } from 'react'
+import { Button } from '../../components/Button'
 import cls from './AddQuestionPage.module.css'
 
 
@@ -62,13 +63,16 @@ export const AddQuestionPage = () =>
 						<option disabled>Question level</option>
 						<hr/>
 						<option value="10">1 - easiest</option>
-						<option value="20">2 - madium</option>
+						<option value="20">2 - medium</option>
 						<option value="30">3 - hardest</option>
 					</select>
 				</div>
 				<label htmlFor="clearFormField" className = {cls.clearFormField}>
-					<input className={cls.checkbox} type="checkbox" name="clearForm" id ="clearFormField" 	defaultValue={true} />
+					<input className={cls.checkbox} type="checkbox" 
+					name="clearForm" id ="clearFormField" 	defaultValue={true} />
+					<span>clear from after submitting ?</span>
 				</label>
+				<Button>Add question</Button>
 			</form>
 		</div>
 	</>;
