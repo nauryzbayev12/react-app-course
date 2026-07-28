@@ -1,10 +1,18 @@
-import { } from 'react'
+import { useActionState } from 'react'
 import { Button } from '../../components/Button'
 import cls from './AddQuestionPage.module.css'
 
 
+const createCardAction = async(_prevState, formData) => {
+
+}
+
 export const AddQuestionPage = () => 
 {
+	const [formState , formAction, isPending] = useActionState(createCardAction , { clearForm: true});
+
+	
+
 	return <>
 		<h1 className= {cls.fromTitle}>Add new question</h1>
 		<div className={cls.fromContainer}>
@@ -69,10 +77,10 @@ export const AddQuestionPage = () =>
 				</div>
 				<label htmlFor="clearFormField" className = {cls.clearFormField}>
 					<input className={cls.checkbox} type="checkbox" 
-					name="clearForm" id ="clearFormField" 	defaultValue={true} />
+					name="clearForm" id ="clearFormField" 	defaultChecked={formState.clearForm} />
 					<span>clear from after submitting ?</span>
 				</label>
-				<Button>Add question</Button>
+				<Button isDisabled = {isPending}>Add question</Button>
 			</form>
 		</div>
 	</>;
